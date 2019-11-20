@@ -8,7 +8,6 @@ class Fibo {
     private:
         boost::dynamic_bitset<> bits;
 
-        void append(boost::dynamic_bitset tuTrzebaDodac);
         void normalize();
 
     public:
@@ -27,13 +26,11 @@ class Fibo {
         Fibo& operator=(Fibo& f);
         Fibo& operator=(Fibo&& f);
 
-        unsigned size() const;
-
     private:
         friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
-};
+    friend const Fibo operator+(const Fibo& a, const Fibo& b);
 
-const Fibo operator+(const Fibo& a, const Fibo& b);
+};
 
 #endif // __FIBO_H__

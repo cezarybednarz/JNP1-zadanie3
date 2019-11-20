@@ -7,24 +7,31 @@ Fibo::Fibo() {
     bits[0] = 0;
 }
 
-unsigned Fibo::size() const {
-    return bits.size();
-}
-
 const Fibo operator+(const Fibo& a, const Fibo& b) {
-    unsigned diff = std::abs((int)a.size() - (int)b.size());
+    // Pamietac o normalize.
+    Fibo c;
+    c.bits.resize(std::max(a.bits.size(), b.bits.size()) + 1);
 
-    if (diff > 0) {
-        if (a.size() > b.size()) {
-            b.append(boost::dynamic_bitset<>(diff));
+    for (unsigned i = a.bits.size() - 1; i >= 2; --i) {
+        if (a.bits[i] & b.bits[i]) {
+            c.bits[i] = 1;
+            if (a.bits[i - 2] | b.bits[i - 2]) {
+                c.bits[i + 1] = 1;
+                c.bits[i - 2] = 1;
+                i -= 3;
+                continue;
+            } else {
+                c.bits[i - 1] = 1;
+                c.bits[i - 2] = 1;
+                i -= 3;
+                continue;
+            }
         } else {
-            a.append(boost::dynamic_bitset<>(diff));
+            c.bits[i] = a.bits[i] | b.bits[i];
         }
     }
 
-    for (unsigned i = a.size() - 1; i >= 0; --i) {
-
-    }
+    return c;
 }
 
 
