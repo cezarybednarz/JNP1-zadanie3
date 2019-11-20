@@ -5,15 +5,15 @@
 #include <string>
 
 class Fibo {
+
 private:
     boost::dynamic_bitset<> bits;
     void normalize();
 
 public:
-
     Fibo();
     ~Fibo();
-    Fibo(Fibo& f);
+    Fibo(const Fibo& f);
     Fibo(Fibo&& f);
     explicit Fibo(int n);
     explicit Fibo(unsigned n);
@@ -37,18 +37,16 @@ public:
     bool operator==(const Fibo& f) const;
     bool operator!=(const Fibo& f) const;
 
+    Fibo& operator+(const Fibo& a, const Fibo& b);
+    Fibo& operator&(const Fibo& a, const Fibo& b);
+    Fibo& operator|(const Fibo& a, const Fibo& b);
+    Fibo& operator^(const Fibo& a, const Fibo& b);
+    Fibo& operator<<(const Fibo& a, const Fibo& b);
+
     Fibo& Zero() const;
     Fibo& One() const;
-
-private:
-    friend Fibo& operator+(const Fibo& a, const Fibo& b);
-    friend Fibo& operator&(const Fibo& a, const Fibo& b);
-    friend Fibo& operator|(const Fibo& a, const Fibo& b);
-    friend Fibo& operator^(const Fibo& a, const Fibo& b);
-    friend Fibo& operator<<(const Fibo& a, const Fibo& b);
-
-    friend std::ostream& operator<<(std::ostream&, const Fibo&);
-
 };
+
+friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
 #endif // __FIBO_H__
