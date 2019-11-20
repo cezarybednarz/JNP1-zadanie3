@@ -39,6 +39,7 @@ public:
     Fibo& Zero() const;
     Fibo& One() const;
 
+private:
     friend Fibo& operator+(const Fibo& a, const Fibo& b);
     friend Fibo& operator&(const Fibo& a, const Fibo& b);
     friend Fibo& operator|(const Fibo& a, const Fibo& b);
@@ -46,6 +47,7 @@ public:
     friend Fibo& operator<<(const Fibo& a, const Fibo& b);
 
     friend std::ostream& operator<<(std::ostream&, const Fibo&);
+
 };
 
 #endif // __FIBO_H__
