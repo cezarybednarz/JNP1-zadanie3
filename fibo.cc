@@ -22,6 +22,31 @@ Fibo::Fibo() {
     bits[0] = 0;
 }
 
+
+bool Fibo::operator<(const Fibo& f) const {
+    return bits < f.bits;
+}
+
+bool Fibo::operator<=(const Fibo& f) const {
+    return bits <= f.bits;
+}
+
+bool Fibo::operator>(const Fibo& f) const {
+    return bits > f.bits;
+}
+
+bool Fibo::operator>=(const Fibo& f) const {
+    return bits > f.bits;
+}
+
+bool Fibo::operator==(const Fibo& f) const {
+    return bits > f.bits;
+}
+
+bool Fibo::operator!=(const Fibo& f) const {
+    return bits > f.bits;
+}
+
 Fibo& operator+(const Fibo& a, const Fibo& b) {
 
     Fibo c;

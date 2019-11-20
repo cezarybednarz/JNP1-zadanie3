@@ -35,6 +35,7 @@ public:
     bool operator<=(const Fibo& f) const;
     bool operator>=(const Fibo& f) const;
     bool operator==(const Fibo& f) const;
+    bool operator!=(const Fibo& f) const;
 
     Fibo& Zero() const;
     Fibo& One() const;
