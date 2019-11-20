@@ -30,7 +30,6 @@ class Fibo {
         friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
     friend const Fibo operator+(const Fibo& a, const Fibo& b);
-
 };
 
 #endif // __FIBO_H__
