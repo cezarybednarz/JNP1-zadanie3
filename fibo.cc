@@ -31,7 +31,7 @@ const Fibo operator+(const Fibo& a, const Fibo& b) {
         }
     }
 
-    return c;
+    return c.normalize();
 }
 
 
