@@ -51,7 +51,7 @@ bool Fibo::operator!=(const Fibo& f) const {
     return bits > f.bits;
 }
 
-Fibo& operator+(const Fibo& f) {
+Fibo Fibo::operator+(const Fibo& f) {
     Fibo result;
     result.bits.resize(std::max(bits.size(), f.bits.size()) + 1);
 
@@ -75,36 +75,23 @@ Fibo& operator+(const Fibo& f) {
     }
 
     result.normalize();
-    return Fibo(result);
+    return result;
 }
 
-// Fibo& operator&(const Fibo& a, const Fibo& b) {
-//     Fibo c;
-//     c.bits = a.bits & b.bits;
+Fibo Fibo::operator&(const Fibo& f) {
+    Fibo result;
+    result.bits = bits & f.bits;
+    return result;
+}
 
-//     return Fibo(c);
-// }
+Fibo Fibo::operator|(const Fibo& f) {
+    Fibo result;
+    result.bits = bits | f.bits;
+    return result;
+}
 
-// Fibo& operator|(const Fibo& a, const Fibo& b) {
-//     Fibo c;
-//     c.bits = a.bits | b.bits;
-//     c.normalize();
-
-//     return Fibo(c);
-// }
-
-// Fibo& operator^(const Fibo& a, const Fibo& b) {
-//     Fibo c;
-//     c.bits = a.bits ^ b.bits;
-//     c.normalize();
-
-//     return Fibo(c);
-// }
-
-// Fibo& operator<<(const Fibo& a, const Fibo& b) {
-//     Fibo c;
-//     c.bits = a.bits << b.bits;
-//     c.normalize();
-
-//     return Fibo(c);
-// }
+Fibo Fibo::operator^(const Fibo& f) {
+    Fibo result;
+    result.bits = bits ^ f.bits;
+    return result;
+}

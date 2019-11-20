@@ -37,11 +37,11 @@ public:
     bool operator==(const Fibo& f) const;
     bool operator!=(const Fibo& f) const;
 
-    Fibo& operator+(const Fibo& a, const Fibo& b);
-    Fibo& operator&(const Fibo& a, const Fibo& b);
-    Fibo& operator|(const Fibo& a, const Fibo& b);
-    Fibo& operator^(const Fibo& a, const Fibo& b);
-    Fibo& operator<<(const Fibo& a, const Fibo& b);
+    Fibo operator+(const Fibo& f);
+    Fibo operator&(const Fibo& f);
+    Fibo operator|(const Fibo& f);
+    Fibo operator^(const Fibo& f);
+    Fibo operator<<(const Fibo& f);
 
     Fibo& Zero() const;
     Fibo& One() const;
