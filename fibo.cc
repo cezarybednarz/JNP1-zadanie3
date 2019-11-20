@@ -7,7 +7,7 @@ Fibo::Fibo() {
     bits[0] = 0;
 }
 
-const Fibo operator+(const Fibo& a, const Fibo& b) {
+Fibo operator+(const Fibo& a, const Fibo& b) {
     // Pamietac o normalize.
     Fibo c;
     c.bits.resize(std::max(a.bits.size(), b.bits.size()) + 1);
