@@ -8,6 +8,7 @@ class Fibo {
 
 private:
     boost::dynamic_bitset<> bits;
+    explicit Fibo(const boost::dynamic_bitset<>& bits);
     void normalize();
 
 public:
@@ -37,10 +38,10 @@ public:
     bool operator==(const Fibo& f) const;
     bool operator!=(const Fibo& f) const;
 
-    Fibo operator+(const Fibo& f);
-    Fibo operator&(const Fibo& f);
-    Fibo operator|(const Fibo& f);
-    Fibo operator^(const Fibo& f);
+    Fibo operator+(const Fibo& f) const;
+    Fibo operator&(const Fibo& f) const;
+    Fibo operator|(const Fibo& f) const;
+    Fibo operator^(const Fibo& f) const;
     Fibo operator<<(const Fibo& f);
 
     Fibo& Zero() const;
