@@ -1,11 +1,21 @@
 #include "fibo.h"
 
-#include <iostream>
-#include <bitset>
+class Fibo {
+    private:
+        void normalize() {
 
+        }
 
+    public:
+        Fibo() {
+            bits = boost::dynamic_bitset<>(1);
+            bits[0] = 0;
+        }
+}
 
-
+const Fibo operator+(const Fibo& a, const Fibo& b) {
+    
+}
 
 
 int main() {

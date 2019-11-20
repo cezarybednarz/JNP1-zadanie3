@@ -1,41 +1,38 @@
-#ifndef FIBO_H
-#define FIBO_H
+#ifndef __FIBO_H__
+#define __FIBO_H__
 
 #include "boost/dynamic_bitset.hpp"
 #include <string>
 
 class Fibo {
-private:
+    private:
+        boost::dynamic_bitset<> bits;
 
-    boost::dynamic_bitset<> bits;
-
-    void normalize();
-
-public:
-
-    Fibo();
-    ~Fibo();
-
-    Fibo(Fibo& f);
-    Fibo(Fibo&& f);
-
-    explicit Fibo(int n);
-    explicit Fibo(unsigned n);
-    explicit Fibo(unsigned long n);
-    explicit Fibo(unsigned long long n);
-    explicit Fibo(std::string s);
-
-    Fibo& operator=(Fibo& f);
-    Fibo& operator=(Fibo&& f);
+        void normalize();
 
 
+    public:
+        Fibo();
+        ~Fibo();
 
-private:
+        Fibo(Fibo& f);
+        Fibo(Fibo&& f);
 
-    friend std::ostream& operator<<(std::ostream&, const Fibo&);
+        explicit Fibo(int n);
+        explicit Fibo(unsigned n);
+        explicit Fibo(unsigned long n);
+        explicit Fibo(unsigned long long n);
+        explicit Fibo(std::string s);
+
+        Fibo& operator=(Fibo& f);
+        Fibo& operator=(Fibo&& f);
+
+
+    private:
+        friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
 };
 
 const Fibo operator+(const Fibo& a, const Fibo& b);
 
-#endif // FIBO_H
+#endif // __FIBO_H__
