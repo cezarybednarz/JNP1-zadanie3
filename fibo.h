@@ -30,7 +30,6 @@ public:
 
 
 
-private:
 
     friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
