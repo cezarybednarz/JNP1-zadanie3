@@ -1,7 +1,7 @@
 #include "fibo.h"
 
 void Fibo::normalize() {
-    for (unsigned i = bits.size() - 1; i >= 1; --i) {
+    for (size_t i = bits.size() - 1; i >= 1; --i) {
         if (bits[i] & bits[i - 1]) {
             if (i == bits.size() - 1) {
                 bits.push_back(1);
@@ -29,6 +29,54 @@ Fibo::~Fibo() = default;
 Fibo::Fibo(const Fibo& f) = default;
 
 Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
+
+Fibo::Fibo(std::string s) {
+    bits = boost::dynamic_bitset<>();
+    for(size_t i = 0; i < s.size(); ++i) {
+        assert(s[i] == '0' || s[i] == '1');
+        bits.push_back(s[s.size() - i - 1] - '0');
+    }
+}
+
+Fibo::Fibo(unsigned long long n) {
+    bits = boost::dynamic_bitset<>();
+    unsigned long long f1 = 0, f2 = 1, temp = 1;
+    size_t length = 0;
+    while(f1 + f2 <= n) {
+        temp = f1 + f2;
+        f1 = f2;
+        f2 = temp;
+        length++;
+    }
+
+    bits.resize(length);
+    for(size_t i = length - 1; i >= 0; --i) {
+        if(f2 <= n) {
+            bits[i] = 1;
+            n -= f2;
+        }
+        temp = f2 - f1;
+        f2 = f1;
+        f1 = temp;
+    }
+}
+
+Fibo::Fibo(unsigned long n) : Fibo((unsigned long long) n) {};
+
+Fibo::Fibo(unsigned int n) : Fibo((unsigned long long) n) {};
+
+Fibo::Fibo(unsigned short n) : Fibo((unsigned long long) n) {};
+
+Fibo::Fibo(long long n) {
+    assert(n >= 0);
+    *this = Fibo((unsigned long long) n);
+}
+
+Fibo::Fibo(long n) : Fibo((long long) n) {};
+
+Fibo::Fibo(int n) : Fibo((long long) n) {};
+
+Fibo::Fibo(short n) : Fibo((long long) n) {};
 
 Fibo& Fibo::operator=(const Fibo& f) = default;
 

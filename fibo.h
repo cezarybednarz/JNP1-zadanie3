@@ -16,13 +16,16 @@ public:
     ~Fibo();
     Fibo(const Fibo& f);
     Fibo(const Fibo&& f);
-
-    Fibo(int n);
-    Fibo(unsigned n);
-    Fibo(unsigned long n);
-    Fibo(unsigned long long n);
-    
     explicit Fibo(std::string s);
+    Fibo(unsigned long long n);
+    Fibo(unsigned long n);
+    Fibo(unsigned int n);
+    Fibo(unsigned short n);
+    Fibo(long long n);
+    Fibo(long n);
+    Fibo(int n);
+    Fibo(short n);
+
 
     Fibo& operator=(const Fibo& f);
     Fibo& operator=(const Fibo&& f);
