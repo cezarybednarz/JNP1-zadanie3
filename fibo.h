@@ -15,15 +15,15 @@ public:
     Fibo();
     ~Fibo();
     Fibo(const Fibo& f);
-    Fibo(Fibo&& f);
+    Fibo(const Fibo&& f);
     explicit Fibo(int n);
     explicit Fibo(unsigned n);
     explicit Fibo(unsigned long n);
     explicit Fibo(unsigned long long n);
     explicit Fibo(std::string s);
 
-    Fibo& operator=(Fibo& f);
-    Fibo& operator=(Fibo&& f);
+    Fibo& operator=(const Fibo& f);
+    Fibo& operator=(const Fibo&& f);
 
     Fibo& operator+=(const Fibo& f);
     Fibo& operator&=(const Fibo& f);
@@ -46,8 +46,10 @@ public:
 
     Fibo& Zero() const;
     Fibo& One() const;
+
+    friend std::ostream& operator<<(std::ostream&, const Fibo&);
+
 };
 
-friend std::ostream& operator<<(std::ostream&, const Fibo&);
 
 #endif // __FIBO_H__

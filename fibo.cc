@@ -2,6 +2,7 @@
 
 #include <utility>
 
+// funkcja pomocnicza do operatorow w Fibo
 void Fibo::normalize() {
 
     for (unsigned i = bits.size() - 1; i >= 1; --i) {
@@ -17,13 +18,29 @@ void Fibo::normalize() {
     }
 }
 
+// konstruktory i destruktory
 Fibo::Fibo() {
     bits = boost::dynamic_bitset<>(1);
-    bits[0] = 0;
 }
 
-Fibo::Fibo(const Fibo& f) {
+Fibo::~Fibo() = default;
 
+Fibo::Fibo(const Fibo& f) : bits(f.bits) {};
+
+Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
+
+Fibo& Fibo::operator=(const Fibo& f) {
+    if(*this != f) {
+        bits = f.bits;
+    }
+    return *this;
+}
+
+Fibo& Fibo::operator=(const Fibo&& f) {
+    if(*this != f) {
+        bits = std::move(f.bits);
+    }
+    return *this;
 }
 
 Fibo::Fibo(const boost::dynamic_bitset<>& bits) {
