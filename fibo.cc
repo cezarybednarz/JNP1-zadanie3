@@ -99,7 +99,8 @@ Fibo& Fibo::operator+=(const Fibo& f) {
 }
 
 Fibo Fibo::operator+(const Fibo& f) const {
-    return *this += f;
+    Fibo copy = Fibo(*this);
+    return copy += f;
 }
 
 Fibo Fibo::operator&(const Fibo& f) const {
