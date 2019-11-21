@@ -5,22 +5,23 @@
 
 int main() {
 
+/*
     Fibo f1, f2;
     bool b;
 
-    /* nie powinno sie kompilowac i sie nie kompiluje
+    // nie powinno sie kompilowac i sie nie kompiluje
     Fibo f3(true);
     Fibo f4('a');
     f1 += "10";
     f1 = f2 + "10";
     b = "10" < f2;
     itp.
-*/
 
+    // natomiast to powinno
     f1 += 2;
     f1 = f2 + 2;
     b = 2 < f2;
-
+*/
     //std::cout << Fibo('0') << "\n";
     //std::cout << Fibo('1') << "\n";
     //std::cout << Fibo((char)0) << "\n";
