@@ -45,7 +45,7 @@ Fibo::Fibo(const boost::dynamic_bitset<>& bits) {
     this->bits = bits;
 }
 
-// If fibits are normalized we can determine longer by length.
+// If fibits are normalized we can determine greater by length.
 bool Fibo::operator<(const Fibo& f) const {
     if (bits.size() == f.bits.size()) {
         return bits < f.bits;
