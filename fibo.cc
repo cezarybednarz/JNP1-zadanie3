@@ -55,31 +55,34 @@ bool Fibo::operator!=(const Fibo& f) const {
     return bits != f.bits;
 }
 
-Fibo Fibo::operator+(const Fibo& f) const {
-    Fibo result;
-    result.bits.resize(std::max(bits.size(), f.bits.size()) + 1);
+Fibo& Fibo::operator+=(const Fibo& f) {
+    bits.resize(std::max(bits.size(), f.bits.size()) + 1);
 
     for (unsigned i = bits.size() - 1; i >= 2; --i) {
         if (bits[i] & f.bits[i]) {
-            result.bits[i] = 1;
+            bits[i] = 1;
             if (bits[i - 2] | f.bits[i - 2]) {
-                result.bits[i + 1] = 1;
-                result.bits[i - 2] = 1;
+                bits[i + 1] = 1;
+                bits[i - 2] = 1;
                 i -= 3;
                 continue;
             } else {
-                result.bits[i - 1] = 1;
-                result.bits[i - 2] = 1;
+                bits[i - 1] = 1;
+                bits[i - 2] = 1;
                 i -= 3;
                 continue;
             }
         } else {
-            result.bits[i] = bits[i] | f.bits[i];
+            bits[i] = bits[i] | f.bits[i];
         }
     }
 
-    result.normalize();
-    return result;
+    normalize();
+    return *this;
+}
+
+Fibo Fibo::operator+(const Fibo& f) const {
+    return *this += f;
 }
 
 Fibo Fibo::operator&(const Fibo& f) const {
