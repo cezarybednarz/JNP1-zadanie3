@@ -15,7 +15,8 @@ int main() {
     f1 += "10";
     f1 = f2 + "10";
     b = "10" < f2;
-    itp.
+    Zero() += Fibo("10");
+    One() += Fibo("10");
 
     // natomiast to powinno
     f1 += 2;
