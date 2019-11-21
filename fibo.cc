@@ -14,11 +14,6 @@ void Fibo::normalize() {
         }
     }
 
-    if(bits.empty()) {
-        bits.push_back(0);
-        return;
-    }
-
     size_t i = bits.size() - 1;
     while(!bits.empty() && !bits[i]) {
         bits.pop_back();
@@ -128,23 +123,29 @@ bool operator!=(const Fibo& f1, const Fibo& f2) {
 
 Fibo& Fibo::operator+=(const Fibo& f) {
     bits.resize(std::max(bits.size(), f.bits.size()) + 1);
-
-    for (unsigned i = bits.size() - 1; i >= 2; --i) {
-        if (bits[i] & f.bits[i]) {
-            bits[i] = 1;
-            if (bits[i - 2] | f.bits[i - 2]) {
-                bits[i + 1] = 1;
-                bits[i - 2] = 1;
-                i -= 3;
-                continue;
-            } else {
-                bits[i - 1] = 1;
-                bits[i - 2] = 1;
-                i -= 3;
-                continue;
+    bool add = 0;
+    size_t length = std::min(bits.size(), f.bits.size());
+    for (size_t i = length - 1; i < length; --i) {
+        if (bits[i] && f.bits[i]) {
+            if (!add) {
+                bits[i] = 0;
+                add = true;
             }
+            if(i == 1) {
+                bits[0] = 1;
+            }
+            bits[i + 1] = 1;
+            i--;
+        } else if ((bits[i] || f.bits[i]) && add) {
+            bits[i] = 0;
+            bits[i + 1] = 1;
         } else {
-            bits[i] = bits[i] | f.bits[i];
+            if(i != 0) {
+                bits[i - 1] |= bits[i];
+            } else {
+                bits[i] = 1;
+            }
+            add = false;
         }
     }
 

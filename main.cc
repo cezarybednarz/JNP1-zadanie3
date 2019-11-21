@@ -9,13 +9,19 @@ int main() {
     std::cout << Fibo("10010") << "\n";
     std::cout << Fibo("11") << "\n";
 
+    std::cout << Fibo("1") + Fibo("1") << " == 10\n";
+    std::cout << Fibo("1") + Fibo("10") << " == 100\n";
+    std::cout << Fibo("10") + Fibo("1") << " == 100\n";
+    std::cout << Fibo("10") + Fibo("10") << " == 101\n";
+
+
     Fibo f;
     assert(f == Zero());
     assert(Fibo(f) == Zero());
     assert(Zero() < One());
-    assert(Fibo("11") == Fibo("100")); // tu jest blad z valgrindem
+    assert(Fibo("11") == Fibo("100"));
+    //assert((Fibo("1001") + Fibo("10")) == Fibo("1011")); // blad
     return 0;
-    assert((Fibo("1001") + Fibo("10")) == Fibo("1011"));
     assert((Fibo("1001") & Fibo("1100")) == Zero()); // 1100 == 10000
     assert((Fibo("1100") | Fibo("11")) == Fibo("10100")); // 1100 == 10000, 11 == 100
     assert((Fibo("1001") ^ Fibo("1010")) == Fibo("11"));
@@ -25,7 +31,7 @@ int main() {
     assert(f == Fibo("1000"));
 
     f = One();
-    assert(f + Fibo("1") == Fibo("10"));
+    //assert(f + Fibo("1") == Fibo("10"));
     assert(f == One());
 
     Fibo f1("101");
