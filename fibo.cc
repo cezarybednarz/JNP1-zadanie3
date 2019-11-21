@@ -18,10 +18,14 @@ void Fibo::normalize() {
         bits.pop_back();
         --i;
     }
+
+    if(bits.empty()) {
+        bits.push_back(0);
+    }
 }
 
 Fibo::Fibo() {
-    bits = boost::dynamic_bitset<>(1);
+    bits = boost::dynamic_bitset<>(1, false);
 }
 
 Fibo::~Fibo() = default;
@@ -32,6 +36,10 @@ Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
 
 Fibo::Fibo(std::string s) {
     bits = boost::dynamic_bitset<>();
+    if(s.empty()) {
+        bits.push_back(0);
+        return;
+    }
     for(size_t i = 0; i < s.size(); ++i) {
         assert(s[i] == '0' || s[i] == '1');
         bits.push_back(s[s.size() - i - 1] - '0');
@@ -40,6 +48,10 @@ Fibo::Fibo(std::string s) {
 
 Fibo::Fibo(unsigned long long n) {
     bits = boost::dynamic_bitset<>();
+    if(n == 0) {
+        bits.push_back(0);
+        return;
+    }
     unsigned long long f1 = 0, f2 = 1, temp = 1;
     size_t length = 0;
     while(f1 + f2 <= n) {
@@ -48,7 +60,6 @@ Fibo::Fibo(unsigned long long n) {
         f2 = temp;
         length++;
     }
-
     bits.resize(length);
     for(size_t i = length - 1; i >= 0; --i) {
         if(f2 <= n) {
@@ -145,7 +156,7 @@ Fibo& Fibo::operator+=(const Fibo& f) {
 
 Fibo& Fibo::operator&=(const Fibo& f) {
     if (bits.size() > f.bits.size()) {
-        bits.resize(f.bits.size());
+        bits.resize(f.bits.size(), false);
     } else {
         bits.resize(f.bits.size(), false);
     }
@@ -183,6 +194,22 @@ Fibo& Fibo::operator^=(const Fibo& f) {
     return *this;
 }
 
+Fibo& Fibo::operator<<=(size_t n) {
+    size_t length = bits.size();
+    bits.resize(bits.size() + n);
+
+    for(size_t i = 0; i < length; ++i) {
+        bits[bits.size() - length + i] = bits[i];
+    }
+
+    for(size_t i = 0; i < length; ++i) {
+        bits[i] = 0;
+    }
+
+    normalize();
+    return *this;
+}
+
 Fibo Fibo::operator+(const Fibo& f) const {
     Fibo copy(*this);
     return copy += f;
@@ -201,6 +228,11 @@ Fibo Fibo::operator|(const Fibo& f) const {
 Fibo Fibo::operator^(const Fibo& f) const {
     Fibo copy(*this);
     return copy ^= f;
+}
+
+Fibo Fibo::operator<<(size_t n) const {
+    Fibo copy(*this);
+    return copy <<= n;
 }
 
 size_t Fibo::length() {

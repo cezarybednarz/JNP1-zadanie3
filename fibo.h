@@ -26,7 +26,6 @@ public:
     Fibo(int n);
     Fibo(short n);
 
-
     Fibo& operator=(const Fibo& f);
     Fibo& operator=(const Fibo&& f);
 
@@ -34,7 +33,7 @@ public:
     Fibo& operator&=(const Fibo& f);
     Fibo& operator|=(const Fibo& f);
     Fibo& operator^=(const Fibo& f);
-    Fibo& operator<<=(const Fibo& f);
+    Fibo& operator<<=(size_t n);
 
     bool operator<(const Fibo& f) const;
     bool operator>(const Fibo& f) const;
@@ -47,16 +46,15 @@ public:
     Fibo operator&(const Fibo& f) const;
     Fibo operator|(const Fibo& f) const;
     Fibo operator^(const Fibo& f) const;
-    Fibo operator<<(const Fibo& f) const;
+    Fibo operator<<(size_t n) const;
 
     size_t length();
-
-    friend const Fibo Zero();
-    friend const Fibo One();
 
     friend std::ostream& operator<<(std::ostream& out, const Fibo& f);
 
 };
 
+const Fibo Zero();
+const Fibo One();
 
 #endif // __FIBO_H__
