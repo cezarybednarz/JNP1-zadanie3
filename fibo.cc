@@ -4,7 +4,7 @@
 
 void Fibo::normalize() {
     for (size_t i = bits.size() - 1; i >= 1; --i) {
-        if (bits[i] & bits[i - 1]) {
+        if (bits[i] && bits[i - 1]) {
             if (i == bits.size() - 1) {
                 bits.push_back(1);
             }
@@ -45,7 +45,10 @@ Fibo::Fibo(std::string s) {
     normalize();
 }
 
-Fibo::Fibo(const char* s) : Fibo(std::string(s)) {}
+Fibo::Fibo(const char* s) {
+    assert(s != nullptr);
+    Fibo(std::string(s));
+}
 
 Fibo::Fibo(unsigned long long n) {
     if(n == 0ULL) {

@@ -5,6 +5,10 @@
 
 int main() {
 
+    //std::cout << Fibo('0') << "\n";
+    //std::cout << Fibo('1') << "\n";
+    //std::cout << Fibo((char)0) << "\n";
+    //std::cout << Fibo(true);
     std::cout << Fibo(44) << " == " << 10010010 << "\n";
     std::cout << Fibo("10010") << "\n";
     std::cout << Fibo("11") << "\n";

@@ -25,6 +25,8 @@ public:
     Fibo(long n);
     Fibo(int n);
     Fibo(short n);
+    explicit Fibo(char c) = delete;
+    explicit Fibo(bool b) = delete;
 
     Fibo& operator=(const Fibo& f);
 
