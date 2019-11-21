@@ -3,7 +3,6 @@
 #include <utility>
 
 void Fibo::normalize() {
-
     for (unsigned i = bits.size() - 1; i >= 1; --i) {
         if (bits[i] & bits[i - 1]) {
             if (i == bits.size() - 1) {
@@ -16,7 +15,11 @@ void Fibo::normalize() {
         }
     }
 
-    //Wywalac zbedne 0 od najbardziej wiodacych.
+    unsigned i = bits.size() - 1;
+    while (bits[i]) {
+        bits.pop_back();
+        --i;
+    }
 }
 
 Fibo::Fibo() {
@@ -40,8 +43,12 @@ Fibo::Fibo(const boost::dynamic_bitset<>& bits) {
     this->bits = bits;
 }
 
+// If fibits are normalized we can determine longer by length.
 bool Fibo::operator<(const Fibo& f) const {
-    return bits < f.bits;
+    if (bits.size() == f.bits.size()) {
+        return bits < f.bits;
+    }
+    return bits.size() < f.bits.size();
 }
 
 bool Fibo::operator<=(const Fibo& f) const {
