@@ -127,11 +127,17 @@ bool operator!=(const Fibo& f1, const Fibo& f2) {
 }
 
 Fibo& Fibo::operator+=(const Fibo& f) {
-    bits.resize(std::max(bits.size(), f.bits.size()) + 1);
+
+    size_t length = std::max(bits.size(), f.bits.size());
+    bits.resize(length + 1, false);
     bool add = 0;
-    size_t length = std::min(bits.size(), f.bits.size());
+
     for (size_t i = length - 1; i < length; --i) {
-        if (bits[i] && f.bits[i]) {
+        bool fb = false;
+        if(i < f.bits.size()) {
+            fb = f.bits[i];
+        }
+        if (bits[i] && fb) {
             if (!add) {
                 bits[i] = 0;
                 add = true;
@@ -141,7 +147,7 @@ Fibo& Fibo::operator+=(const Fibo& f) {
             }
             bits[i + 1] = 1;
             i--;
-        } else if ((bits[i] || f.bits[i]) && add) {
+        } else if ((bits[i] || fb) && add) {
             bits[i] = 0;
             bits[i + 1] = 1;
         } else {
@@ -153,7 +159,7 @@ Fibo& Fibo::operator+=(const Fibo& f) {
             add = false;
         }
     }
-
+    std::cout << *this << "to jest to kurwa\n";
     normalize();
     return *this;
 }
