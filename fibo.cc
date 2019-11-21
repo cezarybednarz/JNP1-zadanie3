@@ -1,7 +1,5 @@
 #include "fibo.h"
 
-#include <utility>
-
 void Fibo::normalize() {
     for (unsigned i = bits.size() - 1; i >= 1; --i) {
         if (bits[i] & bits[i - 1]) {
@@ -28,7 +26,7 @@ Fibo::Fibo() {
 
 Fibo::~Fibo() = default;
 
-Fibo::Fibo(const Fibo& f) : bits(f.bits) {};
+Fibo::Fibo(const Fibo& f) = default;
 
 Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
 
@@ -142,11 +140,15 @@ Fibo Fibo::operator^(const Fibo& f) const {
     return Fibo(bits ^ f.bits);
 }
 
-Fibo Fibo::Zero() const {
+size_t Fibo::length() {
+    return bits.size();
+}
+
+const Fibo Zero() {
     return Fibo();
 }
 
-Fibo Fibo::One() const {
+const Fibo One() {
     return Fibo(1);
 }
 
