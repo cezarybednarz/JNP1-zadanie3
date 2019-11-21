@@ -4,6 +4,7 @@
 
 void Fibo::normalize() {
     for (size_t i = bits.size() - 1; i >= 1; --i) {
+        continue;
         if (bits[i] & bits[i - 1]) {
             if (i == bits.size() - 1) {
                 bits.push_back(1);
@@ -15,8 +16,8 @@ void Fibo::normalize() {
         }
     }
 
-    unsigned i = bits.size() - 1;
-    while (bits[i]) {
+    size_t i = bits.size() - 1;
+    while(!bits.empty() && bits[i]) {
         bits.pop_back();
         --i;
     }
