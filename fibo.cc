@@ -214,7 +214,7 @@ Fibo& Fibo::operator<<=(size_t n) {
     return *this;
 }
 
-Fibo Fibo::operator<<(size_t n) const {
+const Fibo Fibo::operator<<(size_t n) const {
     Fibo copy(*this);
     return copy <<= n;
 }

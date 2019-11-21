@@ -42,7 +42,7 @@ public:
     bool operator==(const Fibo& f) const;
     bool operator!=(const Fibo& f) const;
 
-    Fibo operator<<(size_t n) const;
+    const Fibo operator<<(size_t n) const;
 
     size_t length();
 
