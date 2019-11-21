@@ -47,7 +47,7 @@ Fibo::Fibo(std::string s) {
 
 Fibo::Fibo(const char* s) {
     assert(s != nullptr);
-    Fibo(std::string(s));
+    *this = Fibo(std::string(s));
 }
 
 Fibo::Fibo(unsigned long long n) {
