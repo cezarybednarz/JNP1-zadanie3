@@ -1,23 +1,26 @@
 #include "fibo.h"
 
-#include <bits/stdc++.h>
+#include <iostream>
 
 void Fibo::normalize() {
     for (size_t i = bits.size() - 1; i >= 1; --i) {
-        continue;
         if (bits[i] & bits[i - 1]) {
             if (i == bits.size() - 1) {
                 bits.push_back(1);
-            } else {
-                bits[i + 1] = 1;
-                bits[i] = 0;
-                bits[i] = 0;
             }
+            bits[i + 1] = 1;
+            bits[i] = 0;
+            bits[i - 1] = 0;
         }
     }
 
-    size_t i = bits.size() - 1; // tu moze gdzies jest blad
-    while(!bits.empty() && bits[i]) {
+    if(bits.empty()) {
+        bits.push_back(0);
+        return;
+    }
+
+    size_t i = bits.size() - 1;
+    while(!bits.empty() && !bits[i]) {
         bits.pop_back();
         --i;
     }
@@ -28,17 +31,14 @@ void Fibo::normalize() {
 }
 
 Fibo::Fibo() {
-    bits = boost::dynamic_bitset<>(1, false);
+    bits.push_back(0);
 }
 
-Fibo::~Fibo() = default;
+Fibo::~Fibo() { bits.reset(); }
 
 Fibo::Fibo(const Fibo& f) = default;
 
-Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
-
 Fibo::Fibo(std::string s) {
-    bits = boost::dynamic_bitset<>();
     if(s.empty()) {
         bits.push_back(0);
         return;
@@ -51,8 +51,7 @@ Fibo::Fibo(std::string s) {
 }
 
 Fibo::Fibo(unsigned long long n) {
-    bits = boost::dynamic_bitset<>();
-    if(n == 0) {
+    if(n == 0ULL) {
         bits.push_back(0);
         return;
     }
@@ -64,7 +63,7 @@ Fibo::Fibo(unsigned long long n) {
         f2 = temp;
         length++;
     }
-    bits.push_back(0);
+    bits.resize(length, false);
     for(size_t i = length - 1; i < length; --i) {
         if(f2 <= n) {
             bits[i] = 1;
@@ -95,41 +94,36 @@ Fibo::Fibo(short n) : Fibo((long long) n) {};
 
 Fibo& Fibo::operator=(const Fibo& f) = default;
 
-Fibo& Fibo::operator=(const Fibo&& f) {
-    bits = std::move(f.bits);
-    return *this;
-}
-
 Fibo::Fibo(const boost::dynamic_bitset<>& bits) {
     this->bits = bits;
 }
 
 // If fibits are normalized we can determine greater by length.
-bool Fibo::operator<(const Fibo& f) const {
-    if (bits.size() == f.bits.size()) {
-        return bits < f.bits;
+bool operator<(const Fibo& f1, const Fibo& f2) {
+    if (f1.bits.size() == f2.bits.size()) {
+        return f1.bits < f2.bits;
     }
-    return bits.size() < f.bits.size();
+    return f1.bits.size() < f2.bits.size();
 }
 
-bool Fibo::operator<=(const Fibo& f) const {
-    return *this < f || *this == f;
+bool operator<=(const Fibo& f1, const Fibo& f2) {
+    return f1 < f2 || f1 == f2;
 }
 
-bool Fibo::operator>(const Fibo& f) const {
-    return f < *this;
+bool operator>(const Fibo& f1, const Fibo& f2) {
+    return f2 < f1;
 }
 
-bool Fibo::operator>=(const Fibo& f) const {
-    return f <= *this;
+bool operator>=(const Fibo& f1, const Fibo& f2) {
+    return f2 <= f1;
 }
 
-bool Fibo::operator==(const Fibo& f) const {
-    return bits == f.bits;
+bool operator==(const Fibo& f1, const Fibo& f2) {
+    return f1.bits == f2.bits;
 }
 
-bool Fibo::operator!=(const Fibo& f) const {
-    return bits != f.bits;
+bool operator!=(const Fibo& f1, const Fibo& f2) {
+    return !(f1 == f2);
 }
 
 Fibo& Fibo::operator+=(const Fibo& f) {

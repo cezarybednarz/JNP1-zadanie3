@@ -15,7 +15,6 @@ public:
     Fibo();
     ~Fibo();
     Fibo(const Fibo& f);
-    Fibo(const Fibo&& f);
     explicit Fibo(std::string s);
     Fibo(unsigned long long n);
     Fibo(unsigned long n);
@@ -27,7 +26,6 @@ public:
     Fibo(short n);
 
     Fibo& operator=(const Fibo& f);
-    Fibo& operator=(const Fibo&& f);
 
     Fibo& operator+=(const Fibo& f);
     Fibo& operator&=(const Fibo& f);
@@ -35,20 +33,21 @@ public:
     Fibo& operator^=(const Fibo& f);
     Fibo& operator<<=(size_t n);
 
-    bool operator<(const Fibo& f) const;
-    bool operator>(const Fibo& f) const;
-    bool operator<=(const Fibo& f) const;
-    bool operator>=(const Fibo& f) const;
-    bool operator==(const Fibo& f) const;
-    bool operator!=(const Fibo& f) const;
-
     const Fibo operator<<(size_t n) const;
 
     size_t length() const;
 
+    friend bool operator<(const Fibo& f1, const Fibo& f);
+    friend bool operator==(const Fibo& f1, const Fibo& f);
+
     friend std::ostream& operator<<(std::ostream& out, const Fibo& f);
 
 };
+
+bool operator>(const Fibo& f1, const Fibo& f);
+bool operator<=(const Fibo& f1, const Fibo& f);
+bool operator>=(const Fibo& f1, const Fibo& f);
+bool operator!=(const Fibo& f1, const Fibo& f);
 
 const Fibo operator+(Fibo f1, const Fibo& f2);
 const Fibo operator&(Fibo f1, const Fibo& f2);

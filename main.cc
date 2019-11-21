@@ -4,12 +4,17 @@
 #include <iostream>
 
 int main() {
-    Fibo f;
 
+    std::cout << Fibo(44) << " == " << 10010010 << "\n";
+    std::cout << Fibo("10010") << "\n";
+    std::cout << Fibo("11") << "\n";
+
+    Fibo f;
     assert(f == Zero());
     assert(Fibo(f) == Zero());
     assert(Zero() < One());
     assert(Fibo("11") == Fibo("100")); // tu jest blad z valgrindem
+    return 0;
     assert((Fibo("1001") + Fibo("10")) == Fibo("1011"));
     assert((Fibo("1001") & Fibo("1100")) == Zero()); // 1100 == 10000
     assert((Fibo("1100") | Fibo("11")) == Fibo("10100")); // 1100 == 10000, 11 == 100
