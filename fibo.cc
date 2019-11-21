@@ -45,6 +45,8 @@ Fibo::Fibo(std::string s) {
     normalize();
 }
 
+Fibo::Fibo(const char* s) : Fibo(std::string(s)) {}
+
 Fibo::Fibo(unsigned long long n) {
     if(n == 0ULL) {
         bits.push_back(0);

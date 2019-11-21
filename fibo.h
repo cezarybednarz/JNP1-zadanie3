@@ -16,6 +16,7 @@ public:
     ~Fibo();
     Fibo(const Fibo& f);
     explicit Fibo(std::string s);
+    explicit Fibo(const char* s);
     Fibo(unsigned long long n);
     Fibo(unsigned long n);
     Fibo(unsigned int n);

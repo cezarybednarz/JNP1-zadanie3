@@ -21,7 +21,6 @@ int main() {
     assert(Zero() < One());
     assert(Fibo("11") == Fibo("100"));
     //assert((Fibo("1001") + Fibo("10")) == Fibo("1011")); // blad
-    return 0;
     assert((Fibo("1001") & Fibo("1100")) == Zero()); // 1100 == 10000
     assert((Fibo("1100") | Fibo("11")) == Fibo("10100")); // 1100 == 10000, 11 == 100
     assert((Fibo("1001") ^ Fibo("1010")) == Fibo("11"));
