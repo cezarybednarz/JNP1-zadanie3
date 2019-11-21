@@ -30,12 +30,16 @@ Fibo::Fibo(const Fibo& f) : bits(f.bits) {};
 Fibo::Fibo(const Fibo&& f) : bits(std::move(f.bits)) {};
 
 Fibo& Fibo::operator=(const Fibo& f) {
-    bits = f.bits;
+    if(*this != f) {
+        bits = f.bits;
+    }
     return *this;
 }
 
 Fibo& Fibo::operator=(const Fibo&& f) {
-    bits = std::move(f.bits);
+    if(*this != f) {
+        bits = std::move(f.bits);
+    }
     return *this;
 }
 
