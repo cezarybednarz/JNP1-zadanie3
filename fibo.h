@@ -44,10 +44,10 @@ public:
     Fibo operator^(const Fibo& f) const;
     Fibo operator<<(const Fibo& f);
 
-    Fibo& Zero() const;
-    Fibo& One() const;
+    Fibo Zero() const;
+    Fibo One() const;
 
-    friend std::ostream& operator<<(std::ostream&, const Fibo&);
+    friend std::ostream& operator<<(std::ostream& out, const Fibo& f);
 
 };
 
