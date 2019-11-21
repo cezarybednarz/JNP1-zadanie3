@@ -1,5 +1,7 @@
 #include "fibo.h"
 
+#include <bits/stdc++.h>
+
 void Fibo::normalize() {
     for (size_t i = bits.size() - 1; i >= 1; --i) {
         if (bits[i] & bits[i - 1]) {
@@ -44,6 +46,7 @@ Fibo::Fibo(std::string s) {
         assert(s[i] == '0' || s[i] == '1');
         bits.push_back(s[s.size() - i - 1] - '0');
     }
+    normalize();
 }
 
 Fibo::Fibo(unsigned long long n) {
@@ -60,8 +63,8 @@ Fibo::Fibo(unsigned long long n) {
         f2 = temp;
         length++;
     }
-    bits.resize(length);
-    for(size_t i = length - 1; i >= 0; --i) {
+    bits.push_back(0);
+    for(size_t i = length - 1; i < length; --i) {
         if(f2 <= n) {
             bits[i] = 1;
             n -= f2;
