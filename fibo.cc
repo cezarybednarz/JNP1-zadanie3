@@ -98,13 +98,25 @@ Fibo& Fibo::operator+=(const Fibo& f) {
     return *this;
 }
 
+Fibo& Fibo::operator&=(const Fibo& f) {
+    if (bits.size() > f.bits.size()) {
+        bits.resize(f.bits.size());
+    } else {
+        bits.resize(f.bits.size(), false);
+    }
+
+    this->bits &= f.bits;
+    return *this;
+}
+
 Fibo Fibo::operator+(const Fibo& f) const {
-    Fibo copy = Fibo(*this);
+    Fibo copy(*this);
     return copy += f;
 }
 
 Fibo Fibo::operator&(const Fibo& f) const {
-    return Fibo(bits & f.bits);
+    Fibo copy(*this);
+    return copy &= f;
 }
 
 Fibo Fibo::operator|(const Fibo& f) const {
