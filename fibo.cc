@@ -152,14 +152,13 @@ Fibo& Fibo::operator+=(const Fibo& f) {
             bits[i + 1] = 1;
         } else {
             if(i != 0) {
-                bits[i - 1] |= bits[i];
+                bits[i] |= fb;
             } else {
                 bits[i] = 1;
             }
             add = false;
         }
     }
-    std::cout << *this << "to jest to kurwa\n";
     normalize();
     return *this;
 }
