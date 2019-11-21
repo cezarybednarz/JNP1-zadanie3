@@ -13,8 +13,8 @@ public:
 
     Fibo();
     ~Fibo();
-    Fibo(Fibo& f);
-    Fibo(Fibo&& f);
+    Fibo(const Fibo& f);
+    Fibo(const Fibo&& f);
     explicit Fibo(int n);
     explicit Fibo(unsigned n);
     explicit Fibo(unsigned long n);
