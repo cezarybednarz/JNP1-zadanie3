@@ -44,7 +44,7 @@ public:
 
     const Fibo operator<<(size_t n) const;
 
-    size_t length();
+    size_t length() const;
 
     friend std::ostream& operator<<(std::ostream& out, const Fibo& f);
 
