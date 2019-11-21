@@ -42,10 +42,6 @@ public:
     bool operator==(const Fibo& f) const;
     bool operator!=(const Fibo& f) const;
 
-    Fibo operator+(const Fibo& f) const;
-    Fibo operator&(const Fibo& f) const;
-    Fibo operator|(const Fibo& f) const;
-    Fibo operator^(const Fibo& f) const;
     Fibo operator<<(size_t n) const;
 
     size_t length();
@@ -53,6 +49,11 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Fibo& f);
 
 };
+
+const Fibo operator+(Fibo f1, const Fibo& f2);
+const Fibo operator&(Fibo f1, const Fibo& f2);
+const Fibo operator|(Fibo f1, const Fibo& f2);
+const Fibo operator^(Fibo f1, const Fibo& f2);
 
 const Fibo Zero();
 const Fibo One();

@@ -1,6 +1,6 @@
 #include "fibo.h"
 
-#include <bits/stdc++.h>
+#include <utility>
 
 void Fibo::normalize() {
     for (size_t i = bits.size() - 1; i >= 1; --i) {
@@ -214,30 +214,15 @@ Fibo& Fibo::operator<<=(size_t n) {
     return *this;
 }
 
-Fibo Fibo::operator+(const Fibo& f) const {
-    Fibo copy(*this);
-    return copy += f;
-}
-
-Fibo Fibo::operator&(const Fibo& f) const {
-    Fibo copy(*this);
-    return copy &= f;
-}
-
-Fibo Fibo::operator|(const Fibo& f) const {
-    Fibo copy(*this);
-    return copy |= f;
-}
-
-Fibo Fibo::operator^(const Fibo& f) const {
-    Fibo copy(*this);
-    return copy ^= f;
-}
-
 Fibo Fibo::operator<<(size_t n) const {
     Fibo copy(*this);
     return copy <<= n;
 }
+
+const Fibo operator+(Fibo a, const Fibo& b) { return a += b; }
+const Fibo operator&(Fibo a, const Fibo& b) { return a &= b; }
+const Fibo operator|(Fibo a, const Fibo& b) { return a |= b; }
+const Fibo operator^(Fibo a, const Fibo& b) { return a ^= b; }
 
 size_t Fibo::length() {
     return bits.size();
