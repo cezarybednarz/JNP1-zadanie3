@@ -16,6 +16,8 @@ void Fibo::normalize() {
             }
         }
     }
+
+    //Wywalac zbedne 0 od najbardziej wiodacych.
 }
 
 // konstruktory i destruktory
@@ -99,6 +101,21 @@ Fibo& Fibo::operator&=(const Fibo& f) {
     }
 
     this->bits &= f.bits;
+    normalize();
+    return *this;
+}
+
+Fibo& Fibo::operator|=(const Fibo& f) {
+    if (bits.size() > f.bits.size()) {
+        Fibo copy(f);
+        copy.bits.resize(bits.size(), false);
+        this->bits |= copy.bits;
+    } else {
+        bits.resize(f.bits.size(), false);
+        this->bits |= f.bits;
+    }
+
+    normalize();
     return *this;
 }
 
@@ -113,7 +130,8 @@ Fibo Fibo::operator&(const Fibo& f) const {
 }
 
 Fibo Fibo::operator|(const Fibo& f) const {
-    return Fibo(bits | f.bits);
+    Fibo copy(*this);
+    return copy |= f;
 }
 
 Fibo Fibo::operator^(const Fibo& f) const {
